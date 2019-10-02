@@ -8,15 +8,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import fragments.AboutFragment;
+import fragments.BrocaIndexFragment;
+import fragments.MenuFragment;
+import util.BrocaIndex;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+		MenuFragment.OnFragmentInteractionListener, BrocaIndexFragment.OnFragmentInteractionListener {
 	private AboutFragment aboutFragment;
+	private MenuFragment menuFragment;
+	private BrocaIndexFragment brocaIndexFragment;
 
 	// Deklarasikan atribut Fragment di sini
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		menuFragment = new MenuFragment();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, menuFragment)
+				.commit();
+		brocaIndexFragment = new BrocaIndexFragment();
 		aboutFragment = AboutFragment.newInstance("Devany Christabella Wijaya");
 		setContentView(R.layout.activity_main);
 	}
@@ -37,5 +48,22 @@ public class MainActivity extends AppCompatActivity {
 					.commit();
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBrocaIndexButtonClicked() {
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, brocaIndexFragment)
+				.commit();
+	}
+
+	@Override
+	public void onBodyMassIndexButtonClicked() {
+
+	}
+
+	@Override
+	public void onCalculateBrocaIndexClicked(float index) {
+
 	}
 }
