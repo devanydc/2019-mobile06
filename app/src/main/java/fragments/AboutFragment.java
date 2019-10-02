@@ -32,11 +32,6 @@ public class AboutFragment extends Fragment {
 
     public AboutFragment() {
         // Required empty public constructor
-        AboutFragment fragment=new AboutFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_NAME,name);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     /**
