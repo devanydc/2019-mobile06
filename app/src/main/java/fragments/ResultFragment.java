@@ -16,7 +16,7 @@ import id.ac.polinema.idealbodyweight.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResultFragment extends Fragment {
+public class ResultFragment extends Fragment implements ResultFragmentBMI {
 
     public String information;
     private onFragmentInteractionListener mListener;
@@ -24,11 +24,9 @@ public class ResultFragment extends Fragment {
     public ResultFragment() {
         // Required empty public constructor
     }
+    @Override
     public void setInformation(String information){
         this.information=information;
-    }
-    public interface onFragmentInteractionListener {
-        void onTryAgainButtonClicked(String tag);
     }
 
 
@@ -50,7 +48,13 @@ public class ResultFragment extends Fragment {
         });
         return  view;
     }
-
-    public interface OnFragmentInteractionListener {
+    @Override
+    public void onClick(View view){
+        if (mListener != null) {
+            mListener.onTryAgainButtonClicked("BrocaIndex");
+            Fragment fragment= getFragmentManager().findFragmentById(R.id.fragment_container);
+            mListener.onTryAgainButtonClicked(fragment.getTag());
+        }
     }
+
 }
